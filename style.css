@@ -65,3 +65,22 @@ button{
 .btn-clear{
     background-image: url(red.jpg);
 }
+
+@media only screen and (max-width: 768px) {
+  .btn {
+    width: 33.33%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .btn {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    background: url('math.webp') no-repeat center center fixed;
+    background-size: cover;
+  }
+}
