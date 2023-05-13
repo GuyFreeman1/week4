@@ -84,3 +84,13 @@ button{
     background-size: cover;
   }
 }
+
+button:hover {
+  background-color: grey;
+  color: white;
+}
+.btn-clear:hover {
+  background-color: red;
+  color: white;
+}
+

@@ -4,26 +4,38 @@ let operator = null;
 let result = null;
 
 function calculate(btn) {
-    let screen = document.getElementById("screentext");
-    if (operator === null) {
-      if (btn !== "+" && btn !== "-" && btn !== "*" && btn !== "/") {
-        operand1 = operand1 === null ? btn.toString() : operand1.toString() + btn.toString();
-        screen.value = operand1;
+  let screen = document.getElementById("screentext");
+  if (operator === null) {
+    if (btn !== "+" && btn !== "-" && btn !== "*" && btn !== "/") {
+      if (operand1 === null) {
+        operand1 = btn === "0" ? "0" : btn.toString();
+      } else if (operand1 === "0") {
+        operand1 = btn === "0" ? "0" : btn.toString();
       } else {
-        operator = btn;
-        screen.value += operator;
+        operand1 += btn.toString();
       }
+      screen.value = operand1;
     } else {
-      if (btn !== "+" && btn !== "-" && btn !== "*" && btn !== "/") {
-        operand2 = operand2 === null ? btn.toString() : operand2.toString() + btn.toString();
-        screen.value = operand1 + operator + operand2;
+      operator = btn;
+      screen.value += operator;
+    }
+  } else {
+    if (btn !== "+" && btn !== "-" && btn !== "*" && btn !== "/") {
+      if (operand2 === null) {
+        operand2 = btn === "0" ? "0" : btn.toString();
+      } else if (operand2 === "0") {
+        operand2 = btn === "0" ? "0" : btn.toString();
       } else {
-        results();
-        operator = btn;
-        screen.value = operand1 + operator;
+        operand2 += btn.toString();
       }
+      screen.value = operand1 + operator + operand2;
+    } else {
+      results();
+      operator = btn;
+      screen.value = operand1 + operator;
     }
   }
+}
 
 
   function results() {
@@ -55,6 +67,9 @@ function calculate(btn) {
         result = num1 / num2;
         break;
     }
+  
+    // Limit result to 6 decimal places
+    result = result.toFixed(6);
   
     // Display result
     screen.value = result;
